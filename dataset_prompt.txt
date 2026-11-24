@@ -1,0 +1,36 @@
+You are creating a training dataset for a scam-escalation detection assistant.
+
+Generate at least 1500 prompt/completion pairs.
+
+CONTEXT
+Indian users are added to Telegram/WhatsApp "task & review" groups. They are first paid real small amounts (₹150–₹500) for liking videos or rating hotels. Later they are pushed into "VIP prepaid tasks" and asked to deposit increasing amounts. Write conversations in simple Hinglish (Roman Hindi + English), some in English, Tamil and Telugu. Keep messages short and realistic, like actual chats with day labels.
+
+STAGES — each conversation must represent exactly one stage:
+1 HOOK: first small real payout ₹150–500 for likes/reviews.
+2 TRUST: daily payouts, friendly "manager", small bonus, no deposit yet.
+3 SEED_DEPOSIT: ₹500–2000 "refundable prepaid task" or "unlock fee".
+4 ESCALATION: ₹5000–25000 "VIP unlock", "account frozen", "verification fee", urgency.
+5 CRISIS: ₹30000+, "borrow from family", "screen share", "install loan app", "final release today only".
+
+IMPORTANT: 20% of examples must be BENIGN — genuine freelance task groups where small payouts are real and nobody asks for a deposit. For these use STAGE=1/5 and LABEL=SAFE.
+
+PROMPT FIELD
+The prompt is the full chat history (4–12 lines), starting with "Chat history:".
+
+COMPLETION FIELD — output EXACTLY these 6 lines, nothing before or after:
+STAGE=<n>/5
+LABEL=<SAFE|HOOK|TRUST|SEED_DEPOSIT|ESCALATION|CRISIS>
+PROMISED_TOTAL=<number>
+ASKED_TOTAL=<number>
+RATIO=<ASKED_TOTAL divided by PROMISED_TOTAL, 1 decimal, or 0 if PROMISED_TOTAL is 0>
+NEXT_ASK=<one short realistic next scammer message in quotes>
+PAUSE=<one caring 2-line message in simple Hinglish, calm, never insults the victim>
+
+RULES
+- Use plain numbers only (no ₹ symbol, no commas).
+- For SAFE examples set ASKED_TOTAL=0 and RATIO=0.
+- RATIO must be mathematically correct.
+- NEXT_ASK must match the stage.
+- PAUSE must never say "you are stupid" or "this is 100% a scam". It must sound like a caring friend.
+- Vary names, amounts, days and languages. Do not repeat examples.
+- Output only valid prompt/completion pairs. No explanation.

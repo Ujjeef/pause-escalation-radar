@@ -1,0 +1,14 @@
+Instruction training run
+
+Algorithm: LoRA
+Epochs: 3
+Rank of LoRA: 32
+Model: Gemma 3 4B PT
+Alpha: 64
+Target layers: k_proj, up_proj, o_proj, q_proj, down_proj, v_proj, gate_proj
+Optimizer: cosine
+Warmup ratio: 0.05
+Gradient clipping: 1
+
+Columns: enhanced_prompt, enhanced_completion
+Augmentation: same domains + general purpose, about 20,000 rows total
